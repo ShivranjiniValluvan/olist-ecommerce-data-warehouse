@@ -21,6 +21,7 @@ The data architecture follows three progressive layers:
 ---
 
 ## 📂 Repository Structure
+
 ```
 olist-ecommerce-data-warehouse/
 │
@@ -48,6 +49,7 @@ olist-ecommerce-data-warehouse/
 │   └── init_database.sql
 │
 └── README.md
+```
 
 ---
 
@@ -69,6 +71,7 @@ olist-ecommerce-data-warehouse/
 ---
 
 ## 🥇 Gold Layer — Star Schema
+
 ```
 dim_customers ─────┐
 dim_products  ─────┤
@@ -103,12 +106,15 @@ All checks are located in the `data_quality/` folder.
 1. Download dataset from [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 2. Update file paths in `load_bronze.sql` to match your local dataset location
 3. Run scripts in this order:
+
+```
 scripts/init_database.sql
 → scripts/bronze/ddl_bronze.sql
 → scripts/bronze/load_bronze.sql
 → scripts/silver/ddl_silver.sql
 → scripts/silver/load_silver.sql
 → scripts/gold/ddl_gold.sql
+```
 
 4. Run validation scripts in `data_quality/`
 
