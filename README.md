@@ -21,6 +21,7 @@ The data architecture follows three progressive layers:
 ---
 
 ## 📂 Repository Structure
+```
 olist-ecommerce-data-warehouse/
 │
 ├── data_quality/
@@ -68,11 +69,13 @@ olist-ecommerce-data-warehouse/
 ---
 
 ## 🥇 Gold Layer — Star Schema
+```
 dim_customers ─────┐
 dim_products  ─────┤
-├──── fact_orders
+                   ├──── fact_orders
 dim_sellers   ─────┤
 dim_payments  ─────┘
+```
 
 For full column descriptions → [docs/data_catalog.md](docs/data_catalog.md)
 
