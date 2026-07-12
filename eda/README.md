@@ -1,18 +1,18 @@
-# Exploratory Data Analysis (EDA)
+# 📊Exploratory Data Analysis (EDA)
 
 This folder contains the EDA phase of the Olist E-Commerce SQL Project. It builds on
 the Gold layer views created in the data warehouse project and explores the data to
 understand its structure, key measures, and business patterns before moving into
 advanced analytics.
 
-## What's in this folder
+## 📂 What's in this folder
 
 | File | Description |
 |---|---|
 | `eda_queries.sql` | All EDA queries, organized into 6 sections: Database Exploration, Dimensions Exploration, Date Range Exploration, Measures Exploration, Magnitude Exploration, and Ranking Exploration |
 | `findings.md` | Summary of key observations and patterns found while running the queries |
 
-## Approach
+## 🔍 Approach
 
 The analysis follows a structured EDA flow, moving from understanding the database
 itself to exploring specific business patterns:
@@ -24,9 +24,9 @@ itself to exploring specific business patterns:
 5. **Magnitude Exploration** — how revenue breaks down across states and categories
 6. **Ranking Exploration** — top sellers and delivery performance by state
 
-## Prerequisite
+## ⚙️ Prerequisite
 
 Requires the `olist_dwh` database and Gold layer views, which are built in the
-[data warehouse project](../) (Project 1).
+[data warehouse project](https://github.com/ShivranjiniValluvan/olist-ecommerce-sql-project).
 
-Full findings and key insights are documented in [`findings.md`](./findings.md).
+📄 Full findings and key insights are documented in [`findings.md`](./findings.md).
