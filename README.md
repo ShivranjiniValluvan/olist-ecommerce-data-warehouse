@@ -1,29 +1,28 @@
-# 🏪 Olist E-Commerce Data Warehouse
+🏪 Olist E-Commerce SQL Project
 
-## 📌 Overview
+📌 Overview
 
-An end-to-end SQL Data Warehouse project built using the **Olist Brazilian E-Commerce Dataset**, containing over 100,000 orders across multiple Brazilian marketplaces.
+An end-to-end SQL project built on the Olist Brazilian E-Commerce Dataset, containing over 100,000 orders across multiple Brazilian marketplaces.
+The project covers the full SQL analytics lifecycle — starting with a Data Warehouse built using Medallion Architecture (Bronze → Silver → Gold) to transform raw transactional data into a structured, analytics-ready Star Schema, followed by Exploratory Data Analysis (EDA) on the resulting Gold layer.
 
-The project implements a **Medallion Architecture** (Bronze → Silver → Gold) to transform raw transactional data into a structured, analytics-ready Star Schema for reporting and business intelligence.
+🏗️ Architecture
 
----
-
-## 🏗️ Architecture
-
-![Data Architecture](docs/architecture.png)
+Data Architecture
 
 The data architecture follows three progressive layers:
 
-- **🟤 Bronze Layer** — Raw data ingested as-is from 8 CSV source files into SQL Server using stored procedures and BULK INSERT. No transformations applied.
-- **🥈 Silver Layer** — Data cleaned, standardized, and enriched. Includes duplicate removal, date casting, derived columns (`delivery_days`, `late_flag`), category translation (Portuguese → English), and data enrichment.
-- **🥇 Gold Layer** — Business-ready Star Schema built as SQL Views, optimized for analytical reporting.
+🟤 Bronze Layer — Raw data ingested as-is from 8 CSV source files into SQL Server using stored procedures and BULK INSERT. No transformations applied.
 
----
+🥈 Silver Layer — Data cleaned, standardized, and enriched. Includes duplicate removal, date casting, derived columns (delivery_days, late_flag), category translation (Portuguese → English), and data enrichment.
 
-## 📂 Repository Structure
+🥇 Gold Layer — Business-ready Star Schema built as SQL Views, optimized for analytical reporting.
+
+![Architecture Diagram](docs/architecture.png)
+
+📂 Repository Structure
 
 ```
-olist-ecommerce-data-warehouse/
+olist-ecommerce-sql-project/
 │
 ├── data_quality/
 │   ├── quality_checks_gold.sql
@@ -48,14 +47,17 @@ olist-ecommerce-data-warehouse/
 │   │
 │   └── init_database.sql
 │
+├── eda/
+│   ├── eda_queries.sql
+│   ├── findings.md
+│   └── README.md
+│
 └── README.md
 ```
 
----
+📊 Dataset
 
-## 📊 Dataset
-
-**Source:** [Olist Brazilian E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) — Kaggle
+Source: [Olist Brazilian E-Commerce Dataset — Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 | File | Description |
 |---|---|
@@ -68,9 +70,7 @@ olist-ecommerce-data-warehouse/
 | olist_sellers_dataset.csv | Seller information |
 | product_category_name_translation.csv | Portuguese to English category mapping |
 
----
-
-## 🥇 Gold Layer — Star Schema
+🥇 Gold Layer — Star Schema
 
 ```
 dim_customers ─────┐
@@ -80,11 +80,9 @@ dim_sellers   ─────┤
 dim_payments  ─────┘
 ```
 
-For full column descriptions → [docs/data_catalog.md](docs/data_catalog.md)
+For full column descriptions → docs/data_catalog.md
 
----
-
-## ✅ Data Quality
+✅ Data Quality
 
 Validation checks include:
 - Duplicate detection
@@ -92,35 +90,34 @@ Validation checks include:
 - Referential integrity
 - Business rule validation
 
-All checks are located in the `data_quality/` folder.
+All checks are located in the data_quality/ folder.
 
----
+📊Exploratory Data Analysis
 
-## ▶️ How to Run
+SQL-based EDA performed on the Gold layer, covering database structure, dimensions, key measures, and business patterns such as revenue distribution and delivery performance.
 
-**Prerequisites:**
+📂 View Project → [eda/](./eda)
+
+▶️ How to Run
+
+Prerequisites:
 - SQL Server Express
 - SQL Server Management Studio (SSMS)
 
-**Steps:**
-1. Download dataset from [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
-2. Update file paths in `load_bronze.sql` to match your local dataset location
+Steps:
+1. Download dataset from Kaggle
+2. Update file paths in load_bronze.sql to match your local dataset location
 3. Run scripts in this order:
+   - scripts/init_database.sql
+   - scripts/bronze/ddl_bronze.sql
+   - scripts/bronze/load_bronze.sql
+   - scripts/silver/ddl_silver.sql
+   - scripts/silver/load_silver.sql
+   - scripts/gold/ddl_gold.sql
+4. Run validation scripts in data_quality/
+5. For EDA queries, run eda/eda_queries.sql after the Gold layer is built.
 
-```
-scripts/init_database.sql
-→ scripts/bronze/ddl_bronze.sql
-→ scripts/bronze/load_bronze.sql
-→ scripts/silver/ddl_silver.sql
-→ scripts/silver/load_silver.sql
-→ scripts/gold/ddl_gold.sql
-```
-
-4. Run validation scripts in `data_quality/`
-
----
-
-## 🛠️ Technologies Used
+🛠️ Technologies Used
 
 | Tool | Purpose |
 |---|---|
